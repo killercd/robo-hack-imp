@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Edit Entry</h1>
+<form method="post">
+    <div class="mb-3">
+        <label for="field3" class="form-label">Field 3</label>
+        <input type="text" class="form-control" id="field3" name="field3" value="{{ entry.field3 }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="field4" class="form-label">Field 4</label>
+        <input type="text" class="form-control" id="field4" name="field4" value="{{ entry.field4 }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a href="{{ url_for('page2') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
