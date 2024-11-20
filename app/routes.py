@@ -57,10 +57,24 @@ def page2():
 def gobuster():
     target_v = ""
     g_command = ""
+    wordlist = ""
+    cookies = ""
+    extension = ""
+
     if request.method == 'POST':
         target_v = request.form.get('target')
-        g_command = f"gobuster dir {target_v} -w wordlist"
-    return render_template('gobuster.html', target=target_v, command=g_command)
+        wordlist = request.form.get('wordlist')
+        cookies = request.form.get('cookies')
+        extension = request.form.get('extension')
+
+        g_command = f"gobuster dir {target_v}"
+        if wordlist:
+            g_command = f"{g_command} -w {wordlist}"
+        if cookies:
+            g_command = f"{g_command} -c '{cookies}'"
+        if extension:
+            g_command = f"{g_command} -x {extension}"
+    return render_template('gobuster/gobuster.html', target=target_v, command=g_command, wordlist=wordlist, cookies=cookies, extension=extension)
 
 
 @app.route('/page2/delete/<int:id>')

@@ -1,0 +1,96 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+.dist/
+*.egg
+*.whl
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+*.cover
+coverage.xml
+*.pytest_cache/
+nosetests.xml
+*.mocha_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# PyCharm
+.idea/
+
+# VSCode
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite3
+*.db
+
+# Virtual environments
+env/
+venv/
+venv.bak/
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Cython debug files
+cython_debug/
+
+# Django
+*.migrations/
+
+# Flask
+instance/
+*.webassets-cache
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# Sphinx documentation
+docs/_build/
+
+# Local stack files
+.env
+.env.*
+
+# Temporary files
+*.bak
+*.tmp
+*.swp
+*.swo
+
+# Generated folders
+node_modules/
