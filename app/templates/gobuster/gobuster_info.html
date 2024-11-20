@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Gobuster Info</h1>
+<form method="post">
+  
+
+
+    <div class="mb-3">
+        <label for="lininstall" class="form-label">Linux installation</label>
+        <div id="lininstall" class="form-control text-monospace bg-light p-3" style="white-space: pre; overflow-x: auto;">
+            sudo apt install gobuster
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <label for="wininstall" class="form-label">Windows installation</label>
+        <div id="wininstall" class="form-control text-monospace bg-light p-3" style="white-space: pre; overflow-x: auto;">
+            https://sourceforge.net/projects/gobuster.mirror/files/v3.6.0/gobuster_Darwin_x86_64.tar.gz/download
+        </div>
+      </div>
+    
+</form>
+
+
+{% endblock %}

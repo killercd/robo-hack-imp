@@ -66,15 +66,24 @@ def gobuster():
         wordlist = request.form.get('wordlist')
         cookies = request.form.get('cookies')
         extension = request.form.get('extension')
-
-        g_command = f"gobuster dir {target_v}"
-        if wordlist:
-            g_command = f"{g_command} -w {wordlist}"
-        if cookies:
-            g_command = f"{g_command} -c '{cookies}'"
-        if extension:
-            g_command = f"{g_command} -x {extension}"
+        
+        action = request.form.get('action')
+        if action=='generate':
+            g_command = f"gobuster dir {target_v}"
+            if wordlist:
+                g_command = f"{g_command} -w {wordlist}"
+            if cookies:
+                g_command = f"{g_command} -c '{cookies}'"
+            if extension:
+                g_command = f"{g_command} -x {extension}"
+        elif action=='instinfo':
+            return redirect(url_for('gobusterinfo'))
     return render_template('gobuster/gobuster.html', target=target_v, command=g_command, wordlist=wordlist, cookies=cookies, extension=extension)
+
+@app.route('/gobusterinfo', methods=['GET', 'POST'])
+def gobuster_info():
+    return render_template('gobuster/gobuster_info.html')
+
 
 
 @app.route('/page2/delete/<int:id>')

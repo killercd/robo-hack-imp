@@ -18,11 +18,15 @@
         <label for="extensions" class="form-label">Extension (ex: .txt, .bak, .zip): </label>
         <input type="text" class="form-control" id="extension" name="extension" value="{{ extensions }}">
     </div>
-    <button type="submit" class="btn btn-primary">Generate</button>
+    <button type="submit" class="btn btn-primary" name="action" value="generate">Generate</button>
+    <a href="{{ url_for('gobuster_info') }}" class="btn btn-primary float-end">Installation info</a>
+    
+
     <div class="mb-3">
         <label for="command" class="form-label">Command: </label>
         <textarea class="form-control" id="command" name="command" rows=5>{{ command }}</textarea>
     </div>
+    
 </form>
 
 
