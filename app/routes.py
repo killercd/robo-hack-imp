@@ -1,6 +1,7 @@
 from flask import render_template, request, redirect, url_for, flash
 from app import app, db
 from app.models import Page1Data, Page2Data
+from app.robohack.gobustermod import GobusterMod
 
 @app.route('/')
 def home():
@@ -60,25 +61,22 @@ def gobuster():
     wordlist = ""
     cookies = ""
     extension = ""
-
+    no_tsl_validation = "disabled"
+    
     if request.method == 'POST':
-        target_v = request.form.get('target')
-        wordlist = request.form.get('wordlist')
-        cookies = request.form.get('cookies')
-        extension = request.form.get('extension')
         
         action = request.form.get('action')
         if action=='generate':
-            g_command = f"gobuster dir {target_v}"
-            if wordlist:
-                g_command = f"{g_command} -w {wordlist}"
-            if cookies:
-                g_command = f"{g_command} -c '{cookies}'"
-            if extension:
-                g_command = f"{g_command} -x {extension}"
+            gobuster_mod = GobusterMod(request.form.get('target'), 
+                                   request.form.get('wordlist'),
+                                   request.form.get('cookies'),
+                                   request.form.get('extension'),
+                                   request.form.get('nossl'))
+        
+                
         elif action=='instinfo':
             return redirect(url_for('gobusterinfo'))
-    return render_template('gobuster/gobuster.html', target=target_v, command=g_command, wordlist=wordlist, cookies=cookies, extension=extension)
+    return render_template('gobuster/gobuster.html', target=target_v, command=g_command, wordlist=wordlist, cookies=cookies, extension=extension, nossl=no_tsl_validation)
 
 @app.route('/gobusterinfo', methods=['GET', 'POST'])
 def gobuster_info():

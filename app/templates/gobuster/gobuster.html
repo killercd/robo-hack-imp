@@ -18,6 +18,17 @@
         <label for="extensions" class="form-label">Extension (ex: .txt, .bak, .zip): </label>
         <input type="text" class="form-control" id="extension" name="extension" value="{{ extensions }}">
     </div>
+    <div class="mb-3">
+        <label for="nossl" class="form-label">No TLS Validation: </label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="nossl" id="enabled" value="enabled" required>
+            <label class="form-check-label" for="enabled">Enabled</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="nossl" id="disabled" value="disabled" checked>
+            <label class="form-check-label" for="disabled">Disabled</label>
+        </div>
+    </div>
     <button type="submit" class="btn btn-primary" name="action" value="generate">Generate</button>
     <a href="{{ url_for('gobuster_info') }}" class="btn btn-primary float-end">Installation info</a>
     
