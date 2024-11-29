@@ -4,28 +4,28 @@
 <form method="post">
     <div class="mb-3">
         <label for="target" class="form-label">Target: </label>
-        <input type="text" class="form-control" id="target" name="target" value="{{ target }}" required>
+        <input type="text" class="form-control" id="target" name="target" value="{{ data['target'] }}" required>
     </div>
     <div class="mb-3">
         <label for="wordlist" class="form-label">Wordlist: </label>
-        <input type="text" class="form-control" id="wordlist" name="wordlist" value="{{ wordlist }}">
+        <input type="text" class="form-control" id="wordlist" name="wordlist" value="{{ data['wordlist'] }}">
     </div>
     <div class="mb-3">
         <label for="cookies" class="form-label">Cookies: </label>
-        <input type="text" class="form-control" id="cookies" name="cookies" value="{{ cookies }}">
+        <input type="text" class="form-control" id="cookies" name="cookies" value="{{ data['cookies'] }}">
     </div>
     <div class="mb-3">
         <label for="extensions" class="form-label">Extension (ex: .txt, .bak, .zip): </label>
-        <input type="text" class="form-control" id="extension" name="extension" value="{{ extensions }}">
+        <input type="text" class="form-control" id="extension" name="extension" value="{{ data['extensions'] }}">
     </div>
     <div class="mb-3">
         <label for="nossl" class="form-label">No TLS Validation: </label>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="nossl" id="enabled" value="enabled" required>
+            <input class="form-check-input" type="radio" name="nossl" id="enabled" value="enabled" {% if data['nossl'] == 'enabled' %}checked{% endif %} required>
             <label class="form-check-label" for="enabled">Enabled</label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="nossl" id="disabled" value="disabled" checked>
+            <input class="form-check-input" type="radio" name="nossl" id="disabled" value="disabled" {% if data['nossl'] == 'disabled' %}checked{% endif %}>
             <label class="form-check-label" for="disabled">Disabled</label>
         </div>
     </div>
@@ -35,7 +35,7 @@
 
     <div class="mb-3">
         <label for="command" class="form-label">Command: </label>
-        <textarea class="form-control" id="command" name="command" rows=5>{{ command }}</textarea>
+        <textarea class="form-control" id="command" name="command" rows=5>{{ data['command'] }}</textarea>
     </div>
     
 </form>

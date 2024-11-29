@@ -1,7 +1,8 @@
 from flask import render_template, request, redirect, url_for, flash
 from app import app, db
 from app.models import Page1Data, Page2Data
-from app.robohack.gobustermod import GobusterMod
+from app.robohack.mod.gobustermod import GobusterMod
+from app.robohack.mod.sqlmap import SqlMapMod
 
 @app.route('/')
 def home():
@@ -56,12 +57,6 @@ def page2():
 
 @app.route('/gobuster', methods=['GET', 'POST'])
 def gobuster():
-    target_v = ""
-    g_command = ""
-    wordlist = ""
-    cookies = ""
-    extension = ""
-    no_tsl_validation = "disabled"
     
     if request.method == 'POST':
         
@@ -72,11 +67,24 @@ def gobuster():
                                    request.form.get('cookies'),
                                    request.form.get('extension'),
                                    request.form.get('nossl'))
-        
-                
+            data = gobuster_mod.generate()
+            return render_template('gobuster/gobuster.html', data=data)        
         elif action=='instinfo':
             return redirect(url_for('gobusterinfo'))
-    return render_template('gobuster/gobuster.html', target=target_v, command=g_command, wordlist=wordlist, cookies=cookies, extension=extension, nossl=no_tsl_validation)
+    return render_template('gobuster/gobuster.html', data=GobusterMod.empty_data())
+
+@app.route('/sqlmap', methods=['GET', 'POST'])
+def sqlmap():
+    
+
+    if request.method == 'POST':
+        action = request.form.get('action')
+        if action == 'generate':
+            sqlmap_mod = SqlMapMod(request.form.get('target'),
+                                    request.form.get('request'))
+            data = sqlmap_mod.generate()
+            return render_template('sqlmap/sqlmap.html', data=data)
+    return render_template('sqlmap/sqlmap.html', data=SqlMapMod.empty_data())
 
 @app.route('/gobusterinfo', methods=['GET', 'POST'])
 def gobuster_info():

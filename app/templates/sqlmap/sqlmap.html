@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>SQLMap command generator</h1>
+<form method="post">
+    <div class="mb-3">
+        <label for="target" class="form-label">Target: </label>
+        <input type="text" class="form-control" id="target" name="target" value="{{ data['target'] }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="requestfile" class="form-label">Request File: </label>
+        <input type="text" class="form-control" id="requestfile" name="requestfile" value="{{ data['request'] }}">
+    </div>
+   
+    <button type="submit" class="btn btn-primary" name="action" value="generate">Generate</button>
+    
+    
+
+    <div class="mb-3">
+        <label for="command" class="form-label">Command: </label>
+        <textarea class="form-control" id="command" name="command" rows=5>{{ data['command'] }}</textarea>
+    </div>
+    
+</form>
+
+
+{% endblock %}
