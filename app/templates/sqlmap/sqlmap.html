@@ -8,9 +8,50 @@
     </div>
     <div class="mb-3">
         <label for="requestfile" class="form-label">Request File: </label>
-        <input type="text" class="form-control" id="requestfile" name="requestfile" value="{{ data['request'] }}">
+        <input type="text" class="form-control" id="requestfile" name="requestfile" value="{{ data['requestfile'] }}">
     </div>
    
+    <div class="mb-3">
+        <label for="postdata" class="form-label">Post Data: </label>
+        <input type="text" class="form-control" id="postdata" name="postdata" value="{{ data['postdata'] }}">
+    </div>
+
+    <div class="mb-3">
+        <label for="cookie" class="form-label">Cookie: </label>
+        <input type="text" class="form-control" id="cookie" name="cookie" value="{{ data['cookie'] }}">
+    </div>
+
+    
+    <div class="mb-3">
+        <label for="proxy" class="form-label">Proxy: </label>
+        <input type="text" class="form-control" id="proxy" name="proxy" value="{{ data['proxy'] }}">
+    </div>
+    <fieldset class="border p-3">
+        <legend class="w-auto px-2">Options</legend>
+        <div class="row">
+            <div class="col">
+                <div class="form-check">
+                    <label class="form-check-label" for="random_agent">Random Agent</label>
+                    <input class="form-check-input" type="checkbox" name="random_agent" id="random_agent" {% if data['random_agent'] %} checked {% endif %}>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-check">
+                    <label class="form-check-label" for="tor">Tor</label>
+                    <input class="form-check-input" type="checkbox" name="tor" id="tor" {% if data['tor'] %} checked {% endif %}>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-check">
+                    <label class="form-check-label" for="batch">Batch</label>
+                    <input class="form-check-input" type="checkbox" name="batch" id="batch" {% if data['batch'] %} checked {% endif %}>
+                </div>
+            </div>
+
+        </div>
+        
+    </fieldset>
+
     <button type="submit" class="btn btn-primary" name="action" value="generate">Generate</button>
     
     

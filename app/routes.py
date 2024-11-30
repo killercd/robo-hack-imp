@@ -8,7 +8,6 @@ from app.robohack.mod.sqlmap import SqlMapMod
 def home():
     return render_template('base.html')
 
-# Page 1 routes
 @app.route('/page1', methods=['GET', 'POST'])
 def page1():
     if request.method == 'POST':
@@ -81,7 +80,30 @@ def sqlmap():
         action = request.form.get('action')
         if action == 'generate':
             sqlmap_mod = SqlMapMod(request.form.get('target'),
-                                    request.form.get('request'))
+                                    request.form.get('requestfile'),
+                                    request.form.get('postdata'),
+                                    request.form.get('cookie'),
+                                    request.form.get('random_agent'),
+                                    request.form.get('proxy'),
+                                    request.form.get('tor'),
+                                    "",
+                                    "",
+                                    request.form.get('batch')
+                                    )
+            
+
+        #      return  {
+        #     "target": "",
+        #     "requestfile": "",
+        #     "postdata": "",
+        #     "cookie": "",
+        #     "random_agent": "",
+        #     "proxy": "",
+        #     "tor": "",
+        #     "risk": "",
+        #     "level": "",
+        #     "command": ""
+        # }
             data = sqlmap_mod.generate()
             return render_template('sqlmap/sqlmap.html', data=data)
     return render_template('sqlmap/sqlmap.html', data=SqlMapMod.empty_data())
