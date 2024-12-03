@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Session Manager</h1>
+<form method="post">
+    <div class="mb-3">
+        <label for="session" class="form-label">Session: </label>
+        
+        <select name="session" class="form-select">
+            {% for session in data %}
+            <option value="{{ session.id }}">{{ session.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    
+
+    <button type="submit" class="btn btn-primary" name="action" value="generate">Generate</button>
+    
+</form>
+
+
+{% endblock %}
