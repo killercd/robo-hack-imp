@@ -2,6 +2,17 @@
 {% block content %}
 <h1>Gobuster command generator</h1>
 <form method="post">
+    <fieldset class="border p-3">
+        <legend class="w-auto px-2">Session</legend>
+        <div class="mb-3">            
+            <select name="session" class="form-select">
+                <option value="-1">--</option>
+                {% for session in session_lst %}
+                <option value="{{ session.id }}">{{ session.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </fieldset>
     <div class="mb-3">
         <label for="target" class="form-label">Target: </label>
         <input type="text" class="form-control" id="target" name="target" value="{{ data['target'] }}" required>

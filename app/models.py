@@ -16,3 +16,9 @@ class Session(db.Model):
     name = db.Column(db.String(200), nullable=False)
 
 
+class CommandHistory(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    session_id = db.Column(db.Integer)
+    command = db.Column(db.String(1000))
+
+

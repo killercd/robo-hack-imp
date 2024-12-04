@@ -11,9 +11,14 @@
             {% endfor %}
         </select>
     </div>
-    
+    <div class="mb-3">
+        <label for="session_name" class="form-label">Session Name: </label>
+        <input type="text" class="form-control" id="session_name" name="session_name" value="">
+    </div>
+       
 
-    <button type="submit" class="btn btn-primary" name="action" value="generate">Generate</button>
+    <button type="submit" class="btn btn-primary" name="action" value="save">Save</button>
+    <button type="submit" class="btn btn-primary" name="action" value="delete">Delete</button>
     
 </form>
 
