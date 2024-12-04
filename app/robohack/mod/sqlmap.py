@@ -10,6 +10,7 @@ class SqlMapMod():
                 random_agent,
                 proxy,
                 tor,
+                forcessl,
                 risk,
                 level,
                 batch
@@ -22,6 +23,7 @@ class SqlMapMod():
         self.random_agent = random_agent
         self.proxy = proxy
         self.tor = tor
+        self.forcessl = forcessl
         self.risk = risk
         self.level = level
         self.batch = batch
@@ -31,7 +33,7 @@ class SqlMapMod():
         g_command = f"sqlmap"
         if self.target:
             g_command = f"{g_command} -u '{self.target}'"
-        elif self.request:
+        elif self.requestfile:
             g_command = f"{g_command} -r '{self.requestfile}'"
 
         if self.postdata:
@@ -49,11 +51,14 @@ class SqlMapMod():
         if self.tor:
             g_command = f"{g_command} --tor"
 
+        if self.forcessl:
+            g_command = f"{g_command} --forcessl"
+
         if self.risk:
-            g_command = f"{g_command} --risk='{self.risk}'"
+            g_command = f"{g_command} --risk={self.risk}"
 
         if self.level:
-            g_command = f"{g_command} --level='{self.level}'"
+            g_command = f"{g_command} --level={self.level}"
 
         if self.batch:
             g_command = f"{g_command} --batch"
@@ -66,6 +71,7 @@ class SqlMapMod():
             "random_agent": nte(self.random_agent),
             "proxy": nte(self.proxy),
             "tor": nte(self.tor),
+            "forcessl": nte(self.forcessl),
             "risk": nte(self.risk),
             "level": nte(self.level),
             "batch": nte(self.batch),
@@ -84,6 +90,7 @@ class SqlMapMod():
             "random_agent": "",
             "proxy": "",
             "tor": "",
+            "forcessl": "",
             "risk": "",
             "level": "",
             "batch": "",

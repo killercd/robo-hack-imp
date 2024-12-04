@@ -86,12 +86,14 @@ def sqlmap():
                                     request.form.get('random_agent'),
                                     request.form.get('proxy'),
                                     request.form.get('tor'),
-                                    "",
-                                    "",
+                                    request.form.get('forcessl'),
+                                    request.form.get('risk'),
+                                    request.form.get('level'),
                                     request.form.get('batch')
                                     )
             
             data = sqlmap_mod.generate()
+            print(data)
             return render_template('sqlmap/sqlmap.html', data=data)
     return render_template('sqlmap/sqlmap.html', data=SqlMapMod.empty_data())
 

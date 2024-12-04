@@ -4,7 +4,7 @@
 <form method="post">
     <div class="mb-3">
         <label for="target" class="form-label">Target: </label>
-        <input type="text" class="form-control" id="target" name="target" value="{{ data['target'] }}" required>
+        <input type="text" class="form-control" id="target" name="target" value="{{ data['target'] }}">
     </div>
     <div class="mb-3">
         <label for="requestfile" class="form-label">Request File: </label>
@@ -47,11 +47,36 @@
                     <input class="form-check-input" type="checkbox" name="batch" id="batch" {% if data['batch'] %} checked {% endif %}>
                 </div>
             </div>
+            <div class="col">
+                <div class="form-check">
+                    <label class="form-check-label" for="forcessl">Force SSL</label>
+                    <input class="form-check-input" type="checkbox" name="forcessl" id="forcessl" {% if data['forcessl'] %} checked {% endif %}>
+                </div>
+            </div>
 
         </div>
-        
-    </fieldset>
+       
 
+    </fieldset>
+    <div class="mb-3">
+        <label for="risk" class="form-label">Risk: </label>
+        <select name="risk" class="form-select">
+            <option value="1" {% if data['risk'] == "1" %}selected{% endif %}>1</option>
+            <option value="2" {% if data['risk'] == "2" %}selected{% endif %}>2</option>
+            <option value="3" {% if data['risk'] == "3" %}selected{% endif %}>3</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="level" class="form-label">Level: </label>
+        <select name="level" class="form-select">
+            <option value="1" {% if data['level'] == "1" %}selected{% endif %}>1</option>
+            <option value="2" {% if data['level'] == "2" %}selected{% endif %}>2</option>
+            <option value="3" {% if data['level'] == "3" %}selected{% endif %}>3</option>
+            <option value="4" {% if data['level'] == "4" %}selected{% endif %}>4</option>
+            <option value="5" {% if data['level'] == "5" %}selected{% endif %}>5</option>
+        </select>
+        
+    </div>
     <button type="submit" class="btn btn-primary" name="action" value="generate">Generate</button>
     
     
