@@ -80,7 +80,7 @@ def gobuster():
 @app.route('/sqlmap', methods=['GET', 'POST'])
 def sqlmap():
     
-
+    session_list = Session.query.all()
     if request.method == 'POST':
         action = request.form.get('action')
         if action == 'generate':
@@ -98,8 +98,14 @@ def sqlmap():
                                     )
             
             data = sqlmap_mod.generate()
-            return render_template('sqlmap/sqlmap.html', data=data)
-    return render_template('sqlmap/sqlmap.html', data=SqlMapMod.empty_data())
+            sessionid = request.form.get('session')
+            if sessionid!="-1":
+                new_command = CommandHistory(session_id=sessionid, command=data['command'])
+                db.session.add(new_command)
+                db.session.commit()
+
+            return render_template('sqlmap/sqlmap.html', data=data, session_lst=session_list)
+    return render_template('sqlmap/sqlmap.html', data=SqlMapMod.empty_data(), session_lst=session_list)
 
 @app.route('/gobusterinfo', methods=['GET', 'POST'])
 def gobuster_info():
@@ -123,6 +129,17 @@ def session_manager():
 
     data = Session.query.all()
     return render_template('session/session.html', data=data)
+
+@app.route('/cmdhistory', methods=['GET', 'POST'])
+def cmdhistory():
+    data = (
+        db.session.query(CommandHistory.command, Session.name)
+        .select_from(CommandHistory)  # Explicit starting point
+        .join(Session, CommandHistory.session_id == Session.id)  # Explicit ON clause
+        .all()
+    )
+    return render_template('history/history.html', command_history=data)
+
 
 # @app.route('/page2/delete/<int:id>')
 # def delete_page2(id):

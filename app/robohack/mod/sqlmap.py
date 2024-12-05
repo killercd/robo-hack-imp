@@ -52,7 +52,7 @@ class SqlMapMod():
             g_command = f"{g_command} --tor"
 
         if self.forcessl:
-            g_command = f"{g_command} --forcessl"
+            g_command = f"{g_command} --force-ssl"
 
         if self.risk:
             g_command = f"{g_command} --risk={self.risk}"
